@@ -2,6 +2,14 @@
 
 A real-time placement preparation study tracker engineered for college placement candidates. Built with **React 18**, **Vite**, **CSS Modules**, and **Supabase (PostgreSQL, Auth, Realtime)**.
 
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel&logoColor=white)](https://studdybuddy-nu.vercel.app)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
+[![Supabase](https://img.shields.io/badge/Supabase-Database%20%26%20Realtime-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**🌐 Live Production App:** [https://studdybuddy-nu.vercel.app](https://studdybuddy-nu.vercel.app)
+
 ---
 
 ## 🚀 Live Features Implemented
@@ -154,10 +162,13 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## 🌐 Production Deployment (Vercel)
 
+This repository includes a [`vercel.json`](./vercel.json) rewrite configuration so all React Router SPA paths (`/chat`, `/tasks`, `/logs`, `/profile`) resolve cleanly without 404 errors on browser refresh.
+
+### Deployment Steps:
 1. Push your repository to GitHub:
    ```bash
    git add .
-   git commit -m "feat: complete study tracker with chat, tasks, and heatmap"
+   git commit -m "feat: complete study tracker"
    git push origin main
    ```
 2. Import the repository in [Vercel](https://vercel.com).
@@ -165,4 +176,6 @@ Open [http://localhost:3000](http://localhost:3000).
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
 4. Click **Deploy**.
-5. Add your Vercel production URL to **Authentication > URL Configuration > Redirect URLs** in your Supabase dashboard.
+5. Add your Vercel production URL to **Authentication > URL Configuration > Redirect URLs** in your Supabase dashboard:
+   - `https://studdybuddy-nu.vercel.app`
+   - `https://studdybuddy-nu.vercel.app/**`
