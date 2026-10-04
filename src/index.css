@@ -1,0 +1,92 @@
+:root {
+  /* Common Accent & Status */
+  --accent: #f472b6;
+  --accent-dim: rgba(244, 114, 182, 0.12);
+  --accent-hover: #f9a8d4;
+  --gradient-accent: linear-gradient(135deg, #f472b6, #fb7185);
+  --green: #22c55e;
+  --green-dim: rgba(34, 197, 94, 0.12);
+  --amber: #f59e0b;
+  --amber-dim: rgba(245, 158, 11, 0.12);
+  --red: #ef4444;
+  --red-dim: rgba(239, 68, 68, 0.12);
+
+  /* Shape */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-xs: 5px;
+
+  /* Typography */
+  --font-main: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Dark mode default tokens */
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --surface-2: #242424;
+  --border: #2e2e2e;
+  --text: #f0f0f0;
+  --text-muted: #6b6b6b;
+  --text-dim: #9a9a9a;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --bg-gradient: radial-gradient(ellipse at top, #1a1218 0%, #0f0f0f 60%);
+}
+
+[data-theme='light'] {
+  --bg: #f8f7f7;
+  --surface: #ffffff;
+  --surface-2: #f1f0f0;
+  --border: #e5e4e4;
+  --text: #111111;
+  --text-muted: #888888;
+  --text-dim: #555555;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.12);
+  --bg-gradient: radial-gradient(ellipse at top, #fdf2f8 0%, #f8f7f7 60%);
+}
+
+html {
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre, .font-mono {
+  font-family: var(--font-mono);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

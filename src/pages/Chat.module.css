@@ -1,0 +1,549 @@
+.layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatContainer {
+  flex: 1;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Chat Header */
+.chatHeader {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.partnerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.partnerAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  position: relative;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  border: 2px solid var(--surface);
+}
+
+.dotActive {
+  background-color: var(--green);
+  box-shadow: 0 0 6px var(--green);
+}
+
+.dotBreak {
+  background-color: var(--amber);
+}
+
+.dotOffline {
+  background-color: var(--text-muted);
+}
+
+.partnerMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.partnerName {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.partnerStatusText {
+  font-size: 0.775rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.headerBtn {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-xs);
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.headerBtn:hover {
+  background-color: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Messages Stream */
+.messagesStream {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.emptyChat {
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  max-width: 320px;
+}
+
+.emptyIcon {
+  font-size: 2.5rem;
+}
+
+.messageRow {
+  display: flex;
+  flex-direction: column;
+  max-width: 72%;
+  position: relative;
+}
+
+.messageRowMine {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.messageRowPartner {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.bubble {
+  padding: 0.85rem 1.15rem;
+  border-radius: 14px;
+  font-size: 0.925rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  position: relative;
+  word-break: break-word;
+}
+
+.bubbleMine {
+  background: var(--gradient-accent);
+  color: #ffffff;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 2px 10px rgba(244, 114, 182, 0.25);
+}
+
+.bubblePartner {
+  background-color: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 3px;
+}
+
+.messageMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+}
+
+/* Problem Link Card in Chat */
+.problemCard {
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xs);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.problemCardHeader {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.problemTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.openProblemBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: 0.25rem;
+}
+
+/* Code Snippet Box */
+.codeBox {
+  background-color: #121212;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.25rem;
+}
+
+.codeHeader {
+  background-color: #1e1e1e;
+  padding: 0.35rem 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.725rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+}
+
+.copyCodeBtn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 0.15rem 0.35rem;
+  border-radius: 3px;
+}
+
+.copyCodeBtn:hover {
+  color: var(--text);
+  background-color: var(--surface-2);
+}
+
+.codePre {
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  line-height: 1.4;
+  color: #e2e8f0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+/* Reactions */
+.reactionsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+}
+
+.reactionPill {
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 0.725rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.15s ease;
+}
+
+.reactionPill:hover {
+  border-color: var(--accent);
+}
+
+.reactionPillMine {
+  background-color: var(--accent-dim);
+  border-color: rgba(244, 114, 182, 0.4);
+}
+
+.quickReactBar {
+  opacity: 0;
+  position: absolute;
+  top: -14px;
+  right: 10px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.35rem;
+  display: flex;
+  gap: 0.2rem;
+  box-shadow: var(--shadow);
+  transition: opacity 0.15s ease;
+  z-index: 5;
+}
+
+.messageRow:hover .quickReactBar {
+  opacity: 1;
+}
+
+.reactEmojiBtn {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.15rem 0.25rem;
+  border-radius: 50%;
+  transition: transform 0.1s ease;
+}
+
+.reactEmojiBtn:hover {
+  transform: scale(1.3);
+}
+
+/* Typing Indicator */
+.typingIndicator {
+  font-size: 0.775rem;
+  color: var(--text-dim);
+  padding: 0.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-style: italic;
+}
+
+/* Quick Study Reaction Presets */
+.quickPresetsBar {
+  padding: 0.5rem 1.25rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  overflow-x: auto;
+  border-top: 1px solid var(--border);
+}
+
+.presetBtn {
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.775rem;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.15s ease;
+}
+
+.presetBtn:hover {
+  background-color: var(--accent-dim);
+  color: var(--accent);
+  border-color: rgba(244, 114, 182, 0.4);
+}
+
+/* Chat Composer */
+.composer {
+  padding: 0.85rem 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.codeModeBox {
+  background-color: #121212;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-xs);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.codeModeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.codeTextarea {
+  width: 100%;
+  min-height: 80px;
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+  resize: vertical;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.codeToggleBtn {
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.codeToggleBtn:hover {
+  color: var(--text);
+}
+
+.codeToggleBtnActive {
+  background-color: var(--accent-dim);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.textInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.925rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.textInput:focus {
+  border-color: var(--accent);
+}
+
+.sendBtn {
+  padding: 0.75rem 1.25rem;
+  background: var(--gradient-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.15s ease;
+}
+
+.sendBtn:hover:not(:disabled) {
+  transform: scale(1.02);
+}
+
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Share Problem Modal */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modalTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}

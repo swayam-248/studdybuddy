@@ -1,0 +1,373 @@
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.15s ease, border-color 0.15s ease, opacity 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  border-color: var(--text-muted);
+}
+
+.cardCompleted {
+  opacity: 0.8;
+  background-color: var(--surface-2);
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkTitleGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  flex: 1;
+}
+
+.checkboxBtn {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #ffffff;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkboxBtn:hover {
+  border-color: var(--accent);
+}
+
+.checkboxBtnChecked {
+  background-color: var(--green);
+  border-color: var(--green);
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.titleCompleted {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.775rem;
+  color: var(--text-dim);
+}
+
+.topicBadge {
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs);
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.dueBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+}
+
+.dueOverdue {
+  color: var(--red);
+  background-color: var(--red-dim);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: var(--radius-xs);
+  transition: all 0.15s ease;
+}
+
+.deleteBtn:hover {
+  color: var(--red);
+  background-color: var(--red-dim);
+}
+
+.notesBox {
+  background-color: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  padding: 0.65rem 0.85rem;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Links and Solution Drawer */
+.actionLinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.problemLinkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.problemLinkBtn:hover {
+  background-color: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+.solutionToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--amber);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.solutionToggleBtn:hover {
+  background-color: var(--amber-dim);
+  border-color: var(--amber);
+}
+
+.solutionDrawer {
+  background-color: var(--surface-2);
+  border: 1px dashed var(--amber);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.825rem;
+}
+
+.solutionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+.solutionLink {
+  color: var(--text);
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.solutionLink:hover {
+  color: var(--accent);
+}
+
+.footerInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.725rem;
+  color: var(--text-muted);
+  margin-top: -0.25rem;
+}
+
+/* In Progress Active States */
+.cardInProgress {
+  border-color: rgba(244, 114, 182, 0.7) !important;
+  box-shadow: 0 0 16px rgba(244, 114, 182, 0.2), var(--shadow-md) !important;
+  animation: taskGlow 2s infinite ease-in-out;
+}
+
+@keyframes taskGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(244, 114, 182, 0.18), var(--shadow);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(244, 114, 182, 0.4), var(--shadow-md);
+  }
+}
+
+.statusChip {
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.725rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statusPending {
+  background-color: var(--surface-2);
+  color: var(--text-dim);
+}
+
+.statusInProgress {
+  background-color: var(--accent-dim);
+  color: var(--accent);
+}
+
+.statusCompleted {
+  background-color: var(--green-dim);
+  color: var(--green);
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  animation: dotPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.taskTimerBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--surface-2);
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  border-radius: var(--radius-xs);
+  padding: 0.65rem 0.85rem;
+}
+
+.timerLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.timerValue {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.actionButtonsRow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.startTaskBtn {
+  padding: 0.45rem 1rem;
+  background: var(--gradient-accent);
+  color: #ffffff;
+  border-radius: var(--radius-xs);
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.15s ease;
+}
+
+.startTaskBtn:hover:not(:disabled) {
+  transform: scale(1.02);
+}
+
+.startTaskBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.finishTaskBtn {
+  padding: 0.45rem 1rem;
+  background-color: var(--green);
+  color: #ffffff;
+  border-radius: var(--radius-xs);
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.finishTaskBtn:hover:not(:disabled) {
+  transform: scale(1.02);
+}
+
+.finishTaskBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+

@@ -1,0 +1,627 @@
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+/* Active study card: subtle pink-to-green gradient border glow */
+.cardActive {
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 16px rgba(244, 114, 182, 0.18), 0 0 24px rgba(34, 197, 94, 0.14), var(--shadow-md);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.userMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.displayName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.roleBadge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
+  background-color: var(--surface-2);
+  color: var(--text-dim);
+}
+
+.emailSubtext {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.statusChip {
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+}
+
+.chipDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.statusActive {
+  background-color: var(--green-dim);
+  color: var(--green);
+}
+
+.statusActive .chipDot {
+  background-color: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.statusBreak {
+  background-color: var(--amber-dim);
+  color: var(--amber);
+}
+
+.statusBreak .chipDot {
+  background-color: var(--amber);
+}
+
+.statusOffline {
+  background-color: var(--surface-2);
+  color: var(--text-muted);
+}
+
+.statusOffline .chipDot {
+  background-color: var(--text-muted);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.bodySection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.timerLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+
+.timerDisplay {
+  font-family: var(--font-mono);
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1;
+}
+
+.timerDisplayActive {
+  color: var(--green);
+}
+
+.statusMessage {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.actionsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btnPrimary {
+  flex: 1;
+  min-width: 130px;
+  padding: 0.75rem 1rem;
+  background: var(--gradient-accent);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  transform: scale(1.01);
+}
+
+.btnPrimary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnSecondary {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.btnSecondary:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--text-dim);
+  background-color: var(--border);
+}
+
+.btnSecondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnStop {
+  color: var(--red);
+  border-color: rgba(239, 68, 68, 0.3);
+  background-color: var(--red-dim);
+}
+
+.btnStop:hover:not(:disabled) {
+  color: #ffffff;
+  background-color: var(--red);
+  border-color: var(--red);
+}
+
+.cardBreak {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 16px var(--amber-dim), var(--shadow);
+}
+
+.cardOverdue {
+  border-color: rgba(239, 68, 68, 0.8) !important;
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.4), var(--shadow-md) !important;
+  animation: overduePulse 1.8s infinite ease-in-out;
+}
+
+@keyframes overduePulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.25), var(--shadow-md);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(239, 68, 68, 0.55), var(--shadow-md);
+  }
+}
+
+.timerDisplayBreak {
+  color: var(--amber);
+}
+
+.timerDisplayOverdue {
+  color: var(--red);
+}
+
+.statusOverdue {
+  background-color: var(--red-dim);
+  color: var(--red);
+  font-weight: 700;
+}
+
+.statusOverdue .chipDot {
+  background-color: var(--red);
+  box-shadow: 0 0 6px var(--red);
+  animation: pulse 1s infinite ease-in-out;
+}
+
+.overdueAlertBox {
+  background-color: var(--red-dim);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--red);
+  font-size: 0.825rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.breakPicker {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.breakPickerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.breakPickerTitle {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.breakCloseBtn {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+}
+
+.breakOptionsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.breakOptionBtn {
+  padding: 0.5rem 0.4rem;
+  border-radius: var(--radius-xs);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.breakOptionBtn:hover {
+  border-color: var(--amber);
+  background-color: var(--amber-dim);
+  color: var(--amber);
+  transform: translateY(-1px);
+}
+
+.breakTime {
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.breakDesc {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+}
+
+.partnerBadge {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: -0.25rem;
+}
+
+.partnerOverdueNotice {
+  color: var(--red);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nudgeBtn {
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-xs);
+  background-color: var(--accent-dim);
+  border: 1px solid rgba(244, 114, 182, 0.3);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.15s ease;
+}
+
+.nudgeBtn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* Daily Quota & Streak Styles */
+.streakBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.725rem;
+  font-weight: 600;
+}
+
+.streakActive {
+  background-color: var(--amber-dim);
+  color: var(--amber);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.streakZero {
+  background-color: var(--surface-2);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.streakReset {
+  background-color: var(--red-dim);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.quotaSection {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.quotaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.775rem;
+}
+
+.quotaTitle {
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.quotaNumbers {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.quotaNumbersMet {
+  color: var(--green);
+}
+
+.quotaTrack {
+  width: 100%;
+  height: 7px;
+  background-color: var(--surface);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.quotaFill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--gradient-accent);
+  transition: width 0.35s ease;
+}
+
+.quotaFillMet {
+  background: var(--green);
+}
+
+.quotaFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.725rem;
+  color: var(--text-muted);
+}
+
+.quotaCountdown {
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+}
+
+.editGoalBtn {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.15s ease;
+}
+
+.editGoalBtn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.goalEditorContainer {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.goalEditorLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goalPresetsGrid {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.goalPresetBtn {
+  padding: 0.25rem 0.55rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  border-radius: var(--radius-xs);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.goalPresetBtn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.goalPresetBtnActive {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.goalInputRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.goalInput {
+  width: 70px;
+  padding: 0.3rem 0.5rem;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text);
+  text-align: center;
+  outline: none;
+}
+
+.goalInput:focus {
+  border-color: var(--accent);
+}
+
+.goalSaveBtn {
+  padding: 0.35rem 0.85rem;
+  background: var(--gradient-accent);
+  color: #ffffff;
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.goalSaveBtn:hover {
+  transform: scale(1.02);
+}
+
+.goalCancelBtn {
+  padding: 0.35rem 0.65rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.goalCancelBtn:hover {
+  color: var(--text);
+}
+
+
+
