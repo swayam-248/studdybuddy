@@ -40,6 +40,26 @@
   color: var(--text-dim);
 }
 
+.badgesWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shortSprintTag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--amber);
+  background-color: var(--amber-dim);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 .durationBadge {
   font-family: var(--font-mono);
   font-size: 0.85rem;

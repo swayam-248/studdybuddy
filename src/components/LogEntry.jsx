@@ -52,9 +52,16 @@ export default function LogEntry({ session }) {
           <span className={styles.timeText}>{formatTime(start_time)}</span>
         </div>
 
-        <div className={styles.durationBadge}>
-          <span>⏱️</span>
-          <span>{formatDuration(duration_minutes)}</span>
+        <div className={styles.badgesWrapper}>
+          {duration_minutes < 15 && (
+            <span className={styles.shortSprintTag} title="Short study sprint (< 15m)">
+              ⚡ &lt;15m Sprint
+            </span>
+          )}
+          <div className={styles.durationBadge}>
+            <span>⏱️</span>
+            <span>{formatDuration(duration_minutes)}</span>
+          </div>
         </div>
       </div>
 

@@ -66,21 +66,15 @@ export default function SessionLogger({ sessionStart, onClose, onSaved }) {
     e.preventDefault();
     if (!user) return;
 
-    if (isTooShort) {
-      setErrorMsg(
-        `Strict Rule: Sessions under ${MIN_SESSION_MINUTES} minutes cannot be logged. Placement sprints require at least ${MIN_SESSION_MINUTES}m of sustained deep work.`
-      );
-      return;
-    }
-
     if (selectedTopics.length === 0) {
       setErrorMsg('Please select at least one study topic.');
       return;
     }
 
-    if (note.trim().length < MIN_NOTE_LENGTH) {
+    const minChars = isTooShort ? 5 : MIN_NOTE_LENGTH;
+    if (note.trim().length < minChars) {
       setErrorMsg(
-        `Anti-Fake Rule: Meaningful session reflection required (${note.trim().length}/${MIN_NOTE_LENGTH} characters minimum).`
+        `Meaningful session reflection required (${note.trim().length}/${minChars} characters minimum).`
       );
       return;
     }
@@ -109,6 +103,19 @@ export default function SessionLogger({ sessionStart, onClose, onSaved }) {
 
       if (insertError) {
         throw insertError;
+      }
+
+      // If sprint is under 15 minutes, notify partner via chat alert
+      if (isTooShort) {
+        try {
+          await supabase.from('messages').insert({
+            sender_id: user.id,
+            content: `⚡ Short Sprint Logged: I just completed a quick study sprint of ${durationMinutes}m (< 15m threshold). Topics: ${selectedTopics.join(', ')}. Reflection: "${note.trim()}"`,
+            is_read: false
+          });
+        } catch (msgErr) {
+          console.warn('Failed to insert short session chat notification:', msgErr);
+        }
       }
 
       // Reset user profile status to offline and clear active break & session
@@ -161,13 +168,12 @@ export default function SessionLogger({ sessionStart, onClose, onSaved }) {
         </div>
 
         {isTooShort && (
-          <div className={styles.shortSprintWarning}>
-            <span className={styles.warningIcon}>⛔</span>
+          <div className={styles.shortSprintNotice}>
+            <span className={styles.warningIcon}>⚡</span>
             <div>
-              <strong>Sprint Under {MIN_SESSION_MINUTES} Minutes</strong>
+              <strong>Quick Sprint Notice (&lt; {MIN_SESSION_MINUTES} Minutes)</strong>
               <p>
-                Strict Placement Rule: Sessions under {MIN_SESSION_MINUTES} minutes cannot be
-                recorded as completed study sprints. Keep studying to reach the threshold!
+                Sprint duration is {formattedDuration}. Logging this sprint will immediately notify your partner to keep you both strictly accountable!
               </p>
             </div>
           </div>
@@ -298,10 +304,10 @@ export default function SessionLogger({ sessionStart, onClose, onSaved }) {
               <span>Sprint Reflection (Mandatory)</span>
               <span
                 className={`${styles.charCount} ${
-                  note.trim().length >= MIN_NOTE_LENGTH ? styles.charCountValid : ''
+                  note.trim().length >= (isTooShort ? 5 : MIN_NOTE_LENGTH) ? styles.charCountValid : ''
                 }`}
               >
-                {note.trim().length} / {MIN_NOTE_LENGTH} chars min
+                {note.trim().length} / {isTooShort ? 5 : MIN_NOTE_LENGTH} chars min
               </span>
             </label>
             <textarea
@@ -327,9 +333,13 @@ export default function SessionLogger({ sessionStart, onClose, onSaved }) {
             <button
               type="submit"
               className={styles.btnSubmit}
-              disabled={saving || isTooShort}
+              disabled={saving}
             >
-              {saving ? 'Verifying & Saving...' : 'Commit Sprint'}
+              {saving
+                ? 'Verifying & Saving...'
+                : isTooShort
+                ? 'Log Sprint (Alerts Partner ⚡)'
+                : 'Commit Sprint'}
             </button>
           </div>
         </form>

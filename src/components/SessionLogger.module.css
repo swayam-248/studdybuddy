@@ -238,6 +238,19 @@
   line-height: 1.4;
 }
 
+.shortSprintNotice {
+  background-color: var(--amber-dim);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: var(--amber);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  line-height: 1.4;
+}
+
 .warningIcon {
   font-size: 1.2rem;
   line-height: 1;

@@ -32,11 +32,12 @@ A real-time placement preparation study tracker engineered for college placement
 * **Midnight Cutoff Clock:** Displays remaining time before midnight (`⏳ 3h 45m to midnight cutoff`).
 * **Consecutive Day Streaks:** Tracks consecutive days meeting the daily quota (`🔥 4d Streak`). If yesterday's quota was missed, resets to `💀 Streak Reset`.
 
-### 4. Anti-Fake Logging & Mandatory Proof of Work 📝
-* **15-Minute Minimum Threshold:** Rejects shallow sessions under 15 minutes (`⛔ Sprint Under 15 Minutes — Sessions under 15m cannot be logged`).
+### 4. Anti-Fake Logging & Short Sprint Partner Alerts 📝⚡
+* **Quick Sprint Partner Alerts (<15m):** Sessions under 15 minutes are allowed to be logged instead of blocked, but instantly broadcast a real-time audio chime and floating toast banner to the partner (`⚡ [Partner] just logged a short sprint (<15m)`), plus post an automated accountability notice in the Squad Chat.
+* **Short Sprint Tag in Logs:** Logs visually tag quick sessions with an amber `⚡ <15m Sprint` badge for transparency.
 * **Placement Problem Counters:** Dedicated increment/decrement counters for `🟢 Easy`, `🟡 Medium`, and `🔴 Hard` problems solved during the sprint.
 * **Proof of Work Link:** Input for LeetCode submission URL, GitHub commit, or Notion doc.
-* **Mandatory Reflection:** Requires at least 15 characters of concrete notes detailing what was learned or solved.
+* **Mandatory Reflection:** Requires reflection notes detailing what was learned or solved.
 
 ### 5. Weekly Comparative Analytics 📊
 * **Mon–Sun Side-by-Side Bar Chart:** Daily study hours for both partners displayed side-by-side with hover tooltips.

@@ -8,6 +8,7 @@ import Logs from './pages/Logs';
 import Profile from './pages/Profile';
 import Tasks from './pages/Tasks';
 import Chat from './pages/Chat';
+import NotificationToast, { playShortSessionChime } from './components/NotificationToast';
 
 
 
@@ -249,61 +250,122 @@ function PublicRoute({ children }) {
   return children;
 }
 
+function AppContent() {
+  const { user, partnerProfile } = useAuth();
+  const [notifications, setNotifications] = useState([]);
+
+  // Listen to realtime inserts on sessions table across the entire application
+  useEffect(() => {
+    if (!user) return;
+
+    const channel = supabase
+      .channel('realtime_short_session_alerts')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'sessions' },
+        (payload) => {
+          const newSession = payload.new;
+          if (newSession && newSession.user_id !== user.id && Number(newSession.duration_minutes) < 15) {
+            playShortSessionChime();
+
+            const partnerName =
+              partnerProfile?.display_name ||
+              partnerProfile?.email?.split('@')[0] ||
+              'Your partner';
+
+            const toastItem = {
+              id: newSession.id || String(Date.now()),
+              partnerName,
+              durationMinutes: newSession.duration_minutes,
+              topics: newSession.topics,
+              note: newSession.note
+            };
+
+            setNotifications((prev) => [
+              toastItem,
+              ...prev.filter((n) => n.id !== toastItem.id).slice(0, 2)
+            ]);
+
+            setTimeout(() => {
+              setNotifications((prev) => prev.filter((n) => n.id !== toastItem.id));
+            }, 9000);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user, partnerProfile]);
+
+  const handleDismiss = (id) => {
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  };
+
+  return (
+    <>
+      <NotificationToast notifications={notifications} onDismiss={handleDismiss} />
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/logs"
+          element={
+            <ProtectedRoute>
+              <Logs />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tasks"
+          element={
+            <ProtectedRoute>
+              <Tasks />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <ProtectedRoute>
+              <Chat />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
+  );
+}
+
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              <PublicRoute>
-                <Login />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/logs"
-            element={
-              <ProtectedRoute>
-                <Logs />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/tasks"
-            element={
-              <ProtectedRoute>
-                <Tasks />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/chat"
-            element={
-              <ProtectedRoute>
-                <Chat />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <AppContent />
       </BrowserRouter>
     </AuthProvider>
   );
